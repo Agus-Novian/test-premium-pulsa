@@ -1,0 +1,34 @@
+<html>
+<head></head>
+<body>
+<button type="button" onclick="do_main()">Tampilkan Data</button>
+    <ul id="here">
+
+    </ul>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+<script>
+
+    function do_main() {
+        // please call the ajax here
+        // and put the data on id `here`
+		
+		var objXMLHttpRequest = new XMLHttpRequest();
+		objXMLHttpRequest.onreadystatechange = function() {
+		  if(objXMLHttpRequest.readyState === 4) {
+			if(objXMLHttpRequest.status === 200) {
+				  console.log(objXMLHttpRequest.responseText);
+				  $('#here').html('<h2>'+objXMLHttpRequest.responseText+'</h2>')
+			} else {
+				  console.log('Error Code: ' +  objXMLHttpRequest.status);
+				  console.log('Error Message: ' + objXMLHttpRequest.statusText);
+			}
+		  }
+		}
+		objXMLHttpRequest.open('GET', 'short.php');
+		objXMLHttpRequest.send();
+    }
+</script>
+</html>
